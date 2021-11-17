@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap" rel="stylesheet">
+    <title>Persiapan Kuliah Tatap Muka</title>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/auth/style_pass.css">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+    <div class="judul">
+        <p>ARTCA</p>
+    </div>
+    <div class="container">
+        <div class="headline">
+            <h1>Atur ulang kata sandi</h1>
+            <p>Masukkan e-mail atau nomor ponsel yang terdaftar. 
+            Kami akan mengirimkan kode verifikasi untuk atur ulang
+            kata sandi</p>
+        </div>
+
+        <form class="form-temp" name="formInfo" action="" method="post" onsubmit="return validateForm()">
+            <div class="isi-form">
+                <input type="text" name="email" id="fileToLoad" placeholder="Phone Number or Email"class="form-control"> <br/>
+            </div>
+
+            <div class="daftar-but">
+                <button type="submit" class="btn btn-primary" data-rel="back" onclick="location.href='/login'">Lanjut</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            if (document.forms["formInfo"]["email"].value == "") {
+                alert("Email Tidak Boleh Kosong");
+                document.forms["formInfo"]["email"].focus();
+                return false;
+            }
+            alert('Berhasil');
+        }
+
+    </script>
+</body>
+</html>
