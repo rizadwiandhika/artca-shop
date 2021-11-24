@@ -5,9 +5,10 @@
     color: #2CDA9D;
     margin-top: -50px;
     text-align: center;
+    text-decoration: none;
 }  
 body{
-    background-image: url(Register.png);
+    background-image: url(/img/Register.png);
     height:100%;
 }
 

@@ -31,12 +31,12 @@
 	<body>
 		<nav class="navbar navbar-expand fixed-top navbar-light bg-light">
 			<div class="container-fluid mx-5">
-			  <a class="navbar-brand" href="/shop/home">
+			  <a class="navbar-brand" href="/shop/home-login">
 				<img src="/img/Logo.svg" alt="Logo" height="50px">
 			  </a>
 	  
 			  <form class="input-group mx-5">
-				<input class="form-control" type="search" placeholder="Search" aria-label="Search">
+				<input class="form-control" type="search" placeholder="Search" aria-label="Search" style="width: 10px;">
 				<button class="btn btn-outline-success" type="submit">Search</button>
 			  </form>
 	  
@@ -44,9 +44,10 @@
 				<div class="navbar-nav">
 				  <a class="nav-link me-4" href="#"><img src="/img/Messages.svg" alt="Shopping Cart" height="25px"></a>
 				  <a class="nav-link me-4" href="#"><img src="/img/Bell.svg" alt="Shopping Cart" height="25px"></a>
-				  <a class="nav-link" href="/auth/login">Login</a>
-				  <a class="nav-link" href="/auth/register">Daftar</a>
 				</div>
+                <div id="profil-body">
+                    <a class="profil-body-budi" href="/shop/profile"><img src="/img/profil-budi.svg" alt="profil" height="50px"></a>
+                </div>
 			  </div>
 			</div>
 		  </nav>
@@ -157,7 +158,7 @@
 												</div>
 											</div>
 											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/shop/product"> Kunjungi</a></button>
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/shop/product-login"> Kunjungi</a></button>
 											</div>
 										</div>
 										<!-- /product -->

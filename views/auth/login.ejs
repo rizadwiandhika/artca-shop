@@ -7,23 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap" rel="stylesheet">
     <title>Login ARTCA</title>
     <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/auth/style_login.css">
+    <link type="text/css" rel="stylesheet" href="/css/auth/style_login.css"/>
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body>
-    <div class="judul">
+
+    <a class="judul" href="/shop/home-login">
         <p>ARTCA</p>
-    </div>
+    </a>
+
     <div class="container">
         <div class="headline">
             <h1>Masuk</h1>
-            <p><a href="/register">Daftar</a></p>
-            <p class="login-error"><%= loginError %></p>
+            <p><a href="/auth/register">Daftar</a></p>
         </div>
 
-        <form class="form-temp" name="formInfo" action="/login" method="post" onsubmit="return validateForm()">
+        <form class="form-temp" name="formInfo" action="" method="post" onsubmit="return validateForm()">
             <div class="isi-form">
                 <label>Phone Number or Email</label> <br/>
                 <input type="text" name="email" id="fileToLoad" class="form-control"> <br/>
@@ -33,10 +34,10 @@
                 <input type="password" name="password"  class="form-control"><br/>
             </div>
             <div class="pass">
-                <p><a href="/forgot-password">Lupa kata sandi?</a></p>
+                <p><a href="/auth/pass-recovery">Lupa kata sandi?</a></p>
             </div>
             <div class="daftar-but">
-                <button type="submit" class="btn btn-primary" data-rel="back">Daftar</button>
+                <button type="submit" class="btn btn-primary" data-rel="back">Masuk</button>
             </div>
             <div class="atau">
                 <p><span> atau masuk dengan </span></p>
@@ -58,6 +59,8 @@
                 return false;
             }
         }
-    </script>    
+    </script>
+
+    
 </body>
 </html>

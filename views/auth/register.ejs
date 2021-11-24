@@ -1,93 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap" rel="stylesheet">
     <title>Register ARTCA</title>
-    <link rel="stylesheet" href="/css/auth/style_regist.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="judul">
-      <p>ARTCA</p>
-    </div>
+    <link type="text/css" rel="stylesheet" href="/css/auth/style_regist.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a class="judul" href="/shop/home">
+        <p>ARTCA</p>
+    </a>
     <div class="container">
-      <h1>Daftar Sekarang</h1>
-      <p>
-        Sudah punya akun ARTCA?
-        <a href="/login">Masuk</a>
-      </p>
-      <p><%= registerError %></p>
+        <h1>Daftar Sekarang</h1>
+        <p>Sudah punya akun ARTCA? <a href="/auth/login">Masuk</a></p>
 
-      <form
-        class="form-temp"
-        name="formInfo"
-        action="/register"
-        method="post"
-        onsubmit="return validateForm()"
-      >
-        <div class="isi-form">
-          <label>Phone Number or Email</label>
-          <br />
-          <input
-            type="text"
-            name="email"
-            id="fileToLoad"
-            class="form-control"
-          />
-          <br />
-        </div>
-        <div class="isi-form">
-          <label>Full Name</label>
-          <br />
-          <input type="text" name="name" class="form-control" />
-          <br />
-        </div>
-        <div class="isi-form">
-          <label>Password</label>
-          <br />
-          <input type="password" name="password" class="form-control" />
-          <br />
-        </div>
-        <div class="daftar-but">
-          <button
-            type="submit"
-            class="btn btn-primary"
-            data-rel="back"
-            onclick="saveTextAsFile()"
-          >
-            Daftar
-          </button>
-        </div>
-      </form>
+        <form class="form-temp" name="formInfo" action="" method="post" onsubmit="return validateForm()">
+            <div class="isi-form">
+                <label>Phone Number or Email</label> <br/>
+                <input type="text" name="email" id="fileToLoad" class="form-control"> <br/>
+            </div>
+            <div class="isi-form">
+                <label>Full Name </label> <br/>
+                <input type="text" name="name" class="form-control"> <br/>
+            </div>
+            <div class="isi-form">
+                <label>Password </label> <br/>
+                <input type="password" name="password"  class="form-control"><br/>
+            </div>
+            <div class="daftar-but">
+                <button type="submit" class="btn btn-primary" data-rel="back" onclick="saveTextAsFile()">Daftar</button>
+            </div>
+           
+        </form>
     </div>
 
     <script>
-      function validateForm() {
-        if (document.forms['formInfo']['email'].value == '') {
-          alert('Email Tidak Boleh Kosong')
-          document.forms['formInfo']['email'].focus()
-          return false
+        function validateForm() {
+            if (document.forms["formInfo"]["email"].value == "") {
+                alert("Email Tidak Boleh Kosong");
+                document.forms["formInfo"]["email"].focus();
+                return false;
+            }
+            if (document.forms["formInfo"]["name"].value == "") {
+                alert("Nama Tidak Boleh Kosong");
+                document.forms["formInfo"]["name"].focus();
+                return false;
+            }
+            if (document.forms["formInfo"]["password"].value == "") {
+                alert("Password Tidak Boleh Kosong");
+                document.forms["formInfo"]["password"].focus();
+                return false;
+            }
+            alert('Berhasil');
         }
-        if (document.forms['formInfo']['name'].value == '') {
-          alert('Nama Tidak Boleh Kosong')
-          document.forms['formInfo']['name'].focus()
-          return false
-        }
-        if (document.forms['formInfo']['password'].value == '') {
-          alert('Password Tidak Boleh Kosong')
-          document.forms['formInfo']['password'].focus()
-          return false
-        }
-      }
+
     </script>
-  </body>
+
+    
+</body>
 </html>
