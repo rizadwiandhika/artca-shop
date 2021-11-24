@@ -43,6 +43,11 @@ app.get('/experiment', (req, res) => {
   const PATH_TO_EJS_FILE = 'shop/home' // refer to "views/shop/home.ejs" file
   res.render(PATH_TO_EJS_FILE)
 })
+
+app.get('/shop/profile', (req, res) => {
+  const PATH_TO_EJS_FILE = 'shop/profile' // refer to "views/shop/home.ejs" file
+  res.render(PATH_TO_EJS_FILE)
+})
 /* END OF - HTML EXPERIMENT ZONE */
 
 app.use((req, res, next) => {
