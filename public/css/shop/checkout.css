@@ -1553,138 +1553,29 @@ margin-right: -300px;
   color: #D10024;
 }
 
-/*=========================================================
-    11 -> FOOTER
-===========================================================*/
-
-#footer {
-  background: #15161D;
-  color: #B9BABC;
-}
-
-#bottom-footer {
-  background: #1E1F29;
-}
-
-.footer {
-  margin: 30px 0px;
-}
-
-.footer .footer-title {
-  color: #FFF;
-  text-transform: uppercase;
-  font-size: 18px;
-  margin: 0px 0px 30px;
-}
-
-.footer-links li+li {
-  margin-top: 15px;
-}
-
-.footer-links li a {
-  color: #B9BABC;
-}
-
-.footer-links li i {
-  margin-right: 15px;
-  color: #D10024;
-  width: 14px;
-  text-align: center;
-}
-
-.footer-links li a:hover {
-  color: #D10024;
-}
-
-.copyright {
-  margin-top: 30px;
-  display: block;
-  font-size: 12px;
-}
-
-.footer-payments li {
+.text-pilih-footer{
   display: inline-block;
-  margin-right: 5px;
 }
 
-.footer-payments li a {
-  color: #15161D;
-  font-size: 36px;
-  display: block;
+footer{
+  margin-top:100px;
+  padding-top:25px;
 }
 
-/*=========================================================
-    12 -> SLICK STYLE
-===========================================================*/
-
-/*----------------------------*\
-    Arrows
-\*----------------------------*/
-
-.slick-prev, .slick-next {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #E4E7ED;
-  background-color: #FFF;
-  border-radius: 50%;
-  z-index: 22;
-  -webkit-transition: 0.2s all;
-  transition: 0.2s all;
+footer p a{
+  text-decoration: none;
 }
 
-.slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
-  background-color: #D10024;
-  border-color: #D10024;
+footer h6{
+  color: #2CDA9D;
 }
 
-.slick-prev:before, .slick-next:before {
-  font-family: FontAwesome;
-  color: #2B2D42;
+footer .bagian1-footer p:hover{
+  color: #2CDA9D;
 }
 
-.slick-prev:before {
-  content: "\f104";
-}
-
-.slick-next:before {
-  content: "\f105";
-}
-
-.slick-prev:hover:before, .slick-prev:focus:before, .slick-next:hover:before, .slick-next:focus:before {
-  color: #FFF;
-}
-
-.slick-prev {
-  left: -20px;
-}
-
-.slick-next {
-  right: -20px;
-}
-
-/*----------------------------*\
-    Dots
-\*----------------------------*/
-
-.slick-dots li, .slick-dots li button, .slick-dots li button:before {
-  width: 10px;
-  height: 10px;
-}
-
-.slick-dots li button:before {
-  content: "";
-  opacity: 1;
-  background: #E4E7ED;
-  border-radius: 50%;
-}
-
-.slick-dots li.slick-active button:before {
-  background-color: #D10024;
-}
-
-.custom-dots .slick-dots {
-  position: static;
-  margin: 15px 0px;
+footer .bagian2-footer p:hover{
+  color: #2CDA9D;
 }
 
 

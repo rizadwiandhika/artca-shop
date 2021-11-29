@@ -93,6 +93,31 @@ app.get('/shop/profile', (req, res) => {
   const PATH_TO_EJS_FILE = 'shop/profile' // refer to "views/shop/home.ejs" file
   res.render(PATH_TO_EJS_FILE)
 })
+
+app.get('/admin/daftarproduct', (req, res) => {
+  const PATH_TO_EJS_FILE = 'admin/daftarproduct' // refer to "views/admin/daftarproduct.ejs" file
+  res.render(PATH_TO_EJS_FILE)
+})
+
+app.get('/admin/daftartransaksi', (req, res) => {
+  const PATH_TO_EJS_FILE = 'admin/daftartransaksi' // refer to "views/admin/daftartransaksi.ejs" file
+  res.render(PATH_TO_EJS_FILE)
+})
+
+app.get('/admin/pesananmasuk', (req, res) => {
+  const PATH_TO_EJS_FILE = 'admin/pesananmasuk' // refer to "views/admin/pesananmasuk.ejs" file
+  res.render(PATH_TO_EJS_FILE)
+})
+
+app.get('/shop/list-transaksi', (req, res) => {
+  const PATH_TO_EJS_FILE = 'shop/list-transaksi' // refer to "views/shop/list-transaksi.ejs" file
+  res.render(PATH_TO_EJS_FILE)
+})
+
+app.get('/shop/pembayaran', (req, res) => {
+  const PATH_TO_EJS_FILE = 'shop/pembayaran' // refer to "views/shop/pembayaran.ejs" file
+  res.render(PATH_TO_EJS_FILE)
+})
 /* END OF - HTML EXPERIMENT ZONE */
 
 app.use((req, res, next) => {

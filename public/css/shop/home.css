@@ -105,6 +105,31 @@ ul, ol {
 
 }
 
+.text-pilih-footer{
+  display: inline-block;
+}
+
+footer{
+  margin-top:100px;
+  padding-top:25px;
+}
+
+footer p a{
+  text-decoration: none;
+}
+
+footer h6{
+  color: #2CDA9D;
+}
+
+footer .bagian1-footer p:hover{
+  color: #2CDA9D;
+}
+
+footer .bagian2-footer p:hover{
+  color: #2CDA9D;
+}
+
 .section-tab-nav li.active a {
   color: #2CDA9D;
 }
