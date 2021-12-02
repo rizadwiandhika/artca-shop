@@ -44,26 +44,6 @@ app.get('/experiment', (req, res) => {
   res.render(PATH_TO_EJS_FILE)
 })
 
-app.get('/auth/login', (req, res) => {
-  const PATH_TO_EJS_FILE = 'auth/login' // refer to "views/auth/login.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/auth/pass-recovery', (req, res) => {
-  const PATH_TO_EJS_FILE = 'auth/pass-recovery' // refer to "views/auth/pass-recovery.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/auth/register', (req, res) => {
-  const PATH_TO_EJS_FILE = 'auth/register' // refer to "views/auth/pass-recovery.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/home', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/home' // refer to "views/shop/home.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
 app.get('/shop/home-login', (req, res) => {
   const PATH_TO_EJS_FILE = 'shop/home-login' // refer to "views/shop/home-login.ejs" file
   res.render(PATH_TO_EJS_FILE)
