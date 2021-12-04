@@ -109,6 +109,9 @@ app.use('/shop', shopRouters)
 app.get('/', (_, res) => {
   res.redirect('/shop/home')
 })
+app.get('/shop/home-login', (_, res) => {
+  res.redirect('/shop/home')
+})
 
 app.use((req, res, _next) => {
   console.log('unknown path', req.method, req.url)
