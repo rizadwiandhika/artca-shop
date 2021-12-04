@@ -5,7 +5,6 @@ const asyncHandler = require('../utils/async-handler')
 const createError = require('../utils/create-error')
 
 exports.getIndex = asyncHandler(async (req, res, next) => {
-  // const products = await Art.findAndCountAll({ where: { or: [] } })
   res.render('shop/home')
 })
 
@@ -16,14 +15,6 @@ exports.getArtDetail = asyncHandler(async (req, res, next) => {
 exports.getCheckout = asyncHandler(async (req, res, next) => {
   const artId = req.params.artId
   const art = await Art.findByPk(artId)
-
-  // if (!art) {
-  //   throw createError(404, 'Art not found')
-  // }
-
-  // if (art.stock < 1) {
-  //   throw createError(422, 'Product is out of stock')
-  // }
 
   res.render('shop/checkout', { art: art })
 })

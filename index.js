@@ -44,11 +44,6 @@ app.get('/experiment', (req, res) => {
   res.render(PATH_TO_EJS_FILE)
 })
 
-app.get('/shop/home-login', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/home-login' // refer to "views/shop/home-login.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
 app.get('/shop/product', (req, res) => {
   const PATH_TO_EJS_FILE = 'shop/product' // refer to "views/shop/product.ejs" file
   res.render(PATH_TO_EJS_FILE)
@@ -113,8 +108,12 @@ app.use((req, res, next) => {
 })
 
 app.use('/admin', adminRouters)
-app.use(shopRouters)
-app.use(authRouters)
+app.use('/auth', authRouters)
+app.use('/shop', shopRouters)
+
+app.get('/', (_, res) => {
+  res.redirect('/shop/home')
+})
 
 app.use((req, res, _next) => {
   console.log('unknown path', req.method, req.url)
