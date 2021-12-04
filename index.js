@@ -69,10 +69,6 @@ app.get('/shop/list-transaksi', (req, res) => {
   res.render(PATH_TO_EJS_FILE)
 })
 
-app.get('/shop/pembayaran', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/pembayaran' // refer to "views/shop/pembayaran.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
 /* END OF - HTML EXPERIMENT ZONE */
 
 app.use((req, res, next) => {

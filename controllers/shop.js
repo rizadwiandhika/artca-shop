@@ -1,4 +1,5 @@
 const Art = require('../models/art')
+const Transaction = require('../models/transaction')
 const Trasaction = require('../models/transaction')
 
 const asyncHandler = require('../utils/async-handler')
@@ -23,6 +24,17 @@ exports.getCheckout = asyncHandler(async (req, res, next) => {
   const art = await Art.findByPk(artId)
 
   res.render('shop/checkout', { art: art, user: req.session.user })
+})
+
+exports.getPembayaran = asyncHandler(async (req, res, next) => {
+  const userId = req.session.user.id
+
+  const trasactions = await Transaction.findAll({
+    where: { userId: userId, status: 'unpaid' },
+    include: [{ model: Art }]
+  })
+
+  res.render('shop/pembayaran', { trasactions })
 })
 
 exports.postCheckout = asyncHandler(async (req, res, next) => {

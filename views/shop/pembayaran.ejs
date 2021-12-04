@@ -108,8 +108,46 @@
 					<!-- Product details -->
 					<div class="col-md-9 ">
 						<div class="profil-main">
-							<h6 class="judul">Menunggu Pembayaran (2)</h6>
+							<h6 class="judul">Menunggu Pembayaran (<%= trasactions.length %>)</h6>
                             <hr class="mb-3" style="width:965px;margin-left: -20px;";/>
+							<% for (let t of trasactions) { %>
+								<div class="container-view-1">
+									<div class="row">
+										<div class="col-md-2 product-preview">
+											<img src="/<%= t.art.imageUrl %>" alt="img-art" style="width:150px;padding-right: 20px;">
+										</div>
+
+										<div class="col-md-5 text">
+											<p><strong><%= t.art.name %></strong> | <span style="color: #2CDA9D;font-weight: bold;font-size: 15px;">Invoice</span></p>
+											<p style="font-size: 13px;margin-top: -15px;">Total: <span style="color: #FA632A"> <strong><%= t.totalPrice %></strong></span> Tanggal Pembelian <strong><%= t.createdAt %></strong></p>
+											<p class="bayar-alert" style="font-size: 13px;">Bayar sebelum 31 Februari 2021, 24:01 WIBU</p>
+											<p style="font-size: 13px;margin-top: -5px;">Metode Pembayaran &emsp;:&emsp; <strong>GOPAY</strong></p>
+										</div>
+
+										<div class="col-md-5 text">
+											<a class="batal-alert" href="#">
+												<p>Batalkan Transaksi</p>
+											</a>
+											
+											<br>
+
+											<div class="gambargopay">
+												<img src = "/img/gopay.svg"/> 
+											</div>
+
+											<a class="cara-bayar" href="#">
+												<button type="button" class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#myModal2">Cara Pembayaran</button>
+											</a>
+
+											<a class="unggah-bukti" href="#">
+												<button type="button" class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#myModal1">Unggah Bukti Pembayaran</button>
+											</a>
+										</div>
+
+									</div>
+								</div>
+							<% } %>
+<!-- 
 							<div class="container-view-1">
 								<div class="row">
 									<div class="col-md-2 product-preview">
@@ -165,6 +203,8 @@
 									</div>
 								</div>
 							</div>
+
+							 -->
 						</div>
 						<!-- Button to Open the Modal -->
 						
