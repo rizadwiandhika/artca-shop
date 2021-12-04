@@ -22,30 +22,23 @@ exports.getCheckout = asyncHandler(async (req, res, next) => {
   const artId = req.params.artId
   const art = await Art.findByPk(artId)
 
-  res.render('shop/checkout', { art: art })
+  res.render('shop/checkout', { art: art, user: req.session.user })
 })
 
 exports.postCheckout = asyncHandler(async (req, res, next) => {
-  const { artId, quantity, address } = req.body
-  const art = await Art.findByPk(artId)
+  const { totalPrice, productId } = req.body
+  const art = await Art.findByPk(productId)
+
   const newTransaction = new Trasaction({
-    userId: req.session.user.id || 1,
+    userId: req.session.user.id,
     artId: art.id,
-    quantity: quantity,
-    totalPrice: quantity * art.price,
     type: 'normal',
-    address: address
+    totalPrice: totalPrice,
+    address: req.session.user.address
   })
 
-  art.stock -= quantity
+  art.stock -= 1
 
-  await newTransaction.save()
-  await art.save()
-
-  // res.redirect('/')
-  res.json({
-    message: 'success',
-    art,
-    newTransaction
-  })
+  await Promise.all([newTransaction.save(), art.save()])
+  res.redirect('/shop/pembayaran')
 })
