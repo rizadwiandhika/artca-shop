@@ -6,7 +6,7 @@ const Transaction = sequelize.define('transaction', {
   type: { type: DataTypes.STRING, allowNull: false },
   totalPrice: { type: DataTypes.DOUBLE, allowNull: false, defaultValue: 0 },
   address: { type: DataTypes.TEXT },
-  status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'pending' }
+  status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'unpaid' }
 })
 
 module.exports = Transaction
