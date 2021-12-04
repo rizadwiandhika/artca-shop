@@ -5,11 +5,17 @@ const asyncHandler = require('../utils/async-handler')
 const createError = require('../utils/create-error')
 
 exports.getIndex = asyncHandler(async (req, res, next) => {
-  res.render('shop/home')
+  const arts = await Art.findAll()
+  res.render('shop/home', { arts })
 })
 
 exports.getArtDetail = asyncHandler(async (req, res, next) => {
-  res.render('shop/product')
+  const art = await Art.findByPk(req.params.id)
+  console.log('art:', art)
+  if (!art) {
+    return next(createError(404, 'Art not found'))
+  }
+  res.render('shop/product', { art })
 })
 
 exports.getCheckout = asyncHandler(async (req, res, next) => {

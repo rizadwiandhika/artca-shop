@@ -44,11 +44,6 @@ app.get('/experiment', (req, res) => {
   res.render(PATH_TO_EJS_FILE)
 })
 
-app.get('/shop/product', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/product' // refer to "views/shop/product.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
 app.get('/shop/product-login', (req, res) => {
   const PATH_TO_EJS_FILE = 'shop/product-login' // refer to "views/shop/product-login.ejs" file
   res.render(PATH_TO_EJS_FILE)
