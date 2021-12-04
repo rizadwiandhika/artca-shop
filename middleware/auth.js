@@ -6,7 +6,7 @@ exports.shouldLogin = function (shouldHaveLogin, red = '') {
       return next()
     }
 
-    const redirect = isLoggedIn ? '/' : '/login'
+    const redirect = isLoggedIn ? '/shop/home' : '/auth/login'
     res.redirect(redirect)
   }
 }
