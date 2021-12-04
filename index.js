@@ -44,16 +44,6 @@ app.get('/experiment', (req, res) => {
   res.render(PATH_TO_EJS_FILE)
 })
 
-app.get('/shop/checkout', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/checkout' // refer to "views/shop/checkout.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/checkout-login', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/checkout-login' // refer to "views/shop/checkout-login.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
 app.get('/shop/profile', (req, res) => {
   const PATH_TO_EJS_FILE = 'shop/profile' // refer to "views/shop/home.ejs" file
   res.render(PATH_TO_EJS_FILE)
