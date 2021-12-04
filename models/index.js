@@ -1,15 +1,15 @@
 const Art = require('./art')
 // const Cart = require('./cart')
-const Complaint = require('./complaint')
+// const Complaint = require('./complaint')
 const Courier = require('./courier')
 const Discussion = require('./discussion')
 const ExpeditionStatus = require('./expedition-status')
 const PaymentMethodStep = require('./payment-method-step')
 const PaymentMethod = require('./payment-method')
-const Review = require('./review')
+// const Review = require('./review')
 const Reply = require('./reply')
 const Transaction = require('./transaction')
-const TransactionDetail = require('./trasaction-detail')
+// const TransactionDetail = require('./trasaction-detail')
 const User = require('./user')
 
 function initializeRelation() {
@@ -20,11 +20,11 @@ function initializeRelation() {
   User.hasMany(Art)
   Art.belongsTo(User)
 
-  TransactionDetail.hasOne(Review)
-  Review.belongsTo(TransactionDetail)
+  // TransactionDetail.hasOne(Review)
+  // Review.belongsTo(TransactionDetail)
 
-  TransactionDetail.hasOne(Complaint)
-  Complaint.belongsTo(TransactionDetail)
+  // TransactionDetail.hasOne(Complaint)
+  // Complaint.belongsTo(TransactionDetail)
 
   Courier.hasMany(Transaction)
   Transaction.belongsTo(Courier)
@@ -50,8 +50,10 @@ function initializeRelation() {
   User.belongsToMany(Discussion, { through: Reply })
   Discussion.belongsToMany(User, { through: Reply })
 
-  Art.belongsToMany(Transaction, { through: TransactionDetail })
-  Transaction.belongsToMany(Art, { through: TransactionDetail })
+  // Art.belongsToMany(Transaction, { through: TransactionDetail })
+  // Transaction.belongsToMany(Art, { through: TransactionDetail })
+  Art.hasMany(Transaction)
+  Transaction.belongsTo(Art)
 }
 
 module.exports = {
