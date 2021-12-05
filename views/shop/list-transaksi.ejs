@@ -181,6 +181,7 @@
               <a class="status-berhasil" href="#"><p>Berhasil</p></a>
               <a class="status-batal" href="#"><p>Tidak Berhasil</p></a>
 
+              <% for (let p of pending) { %>
               <div class="container-view-1">
                 <div class="row">
                   <p style="font-size: 15px">
@@ -205,15 +206,14 @@
 
                   <div class="col-md-2 product-preview">
                     <img
-                      src="/img/product06.png"
-                      alt=""
+                      src="/<%= p.art.imageUrl %>"
                       style="width: 150px; padding-right: 20px"
                     />
                   </div>
 
                   <div class="col-md-6 text">
                     <p style="padding-top: 10px">
-                      <strong>Lukisan Drum</strong>
+                      <strong><%= p.art.name %></strong>
                       |
                       <span
                         style="
@@ -228,32 +228,23 @@
                     <p style="font-size: 13px; margin-top: -15px">
                       Total:
                       <span style="color: #fa632a">
-                        <strong>920.000</strong>
+                        <strong><%= p.totalPrice %></strong>
                       </span>
                       Tanggal Pembelian
-                      <strong>21 Oktober 2021</strong>
+                      <strong><%= p.createdAt %></strong>
                     </p>
                     <p style="font-size: 13px; margin-top: -15px">
                       Metode Pembayaran &emsp;:&emsp;
                       <strong>GOPAY</strong>
                     </p>
                   </div>
-
-                  <div class="col-md-4 bukti">
-                    <a class="bukti-but" href="#">
-                      <button
-                        type="button"
-                        class="btn btn-outline-2"
-                        data-bs-toggle="modal"
-                        data-bs-target="#myModal1"
-                      >
-                        Unggah Bukti Pembayaran
-                      </button>
-                    </a>
-                  </div>
                 </div>
               </div>
+              <% } %>
 
+              <br />
+
+              <% for (let p of paid) { %>
               <div class="container-view-1">
                 <div class="row">
                   <p style="font-size: 15px">
@@ -277,14 +268,14 @@
                   </p>
                   <div class="col-md-2 product-preview">
                     <img
-                      src="/img/product01.png"
+                      src="/<%= p.art.imageUrl %>"
                       alt=""
                       style="width: 150px; padding-right: 20px"
                     />
                   </div>
                   <div class="col-md-6 text">
                     <p style="padding-top: 10px">
-                      <strong>Lukisan Motif Bata</strong>
+                      <strong><%= p.art.name %></strong>
                       |
                       <span
                         style="
@@ -299,10 +290,10 @@
                     <p style="font-size: 13px; margin-top: -15px">
                       Total:
                       <span style="color: #fa632a">
-                        <strong>630.000</strong>
+                        <strong><%= p.totalPrice %></strong>
                       </span>
                       Tanggal Pembelian
-                      <strong>30 Februari 2021</strong>
+                      <strong><%= p.createdAt %></strong>
                     </p>
                     <p style="font-size: 13px; margin-top: -15px">
                       Metode Pembayaran &emsp;:&emsp;
@@ -319,7 +310,11 @@
                   </div>
                 </div>
               </div>
+              <% } %>
 
+              <br />
+
+              <% for (let f of failed) { %>
               <div class="container-view-1">
                 <div class="row">
                   <p style="font-size: 15px">
@@ -343,14 +338,14 @@
                   </p>
                   <div class="col-md-2 product-preview">
                     <img
-                      src="/img/product02.png"
+                      src="/<%= f.art.imageUrl %>"
                       alt=""
                       style="width: 150px; padding-right: 20px"
                     />
                   </div>
                   <div class="col-md-6 text" style="margin-bottom: 40px">
                     <p style="padding-top: 10px">
-                      <strong>Lukisan Lampu Malam</strong>
+                      <strong><%= f.art.name %></strong>
                       |
                       <span
                         style="
@@ -365,26 +360,19 @@
                     <p style="font-size: 13px; margin-top: -15px">
                       Total:
                       <span style="color: #fa632a">
-                        <strong>1.813.000</strong>
+                        <strong><%= f.totalPrice %></strong>
                       </span>
                       Tanggal Pembelian
-                      <strong>15 Maret 2021</strong>
+                      <strong><%= f.createdAt %></strong>
                     </p>
                     <p style="font-size: 13px; margin-top: -15px">
                       Metode Pembayaran &emsp;:&emsp;
                       <strong>Bank Transfer</strong>
                     </p>
                   </div>
-                  <!-- <div class="col-md-4 komplain-ulasan">
-                                        <a class="komplain-but" href="#">
-											<p>Komplain</p>
-										</a>
-										<a class="ulasan-but" href="#">
-											<p>Beri Ulasan</p>
-										</a>
-                                    </div> -->
                 </div>
               </div>
+              <% } %>
             </div>
           </div>
         </div>

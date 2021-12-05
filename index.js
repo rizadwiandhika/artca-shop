@@ -66,11 +66,6 @@ app.get('/admin/pesananmasuk', (req, res) => {
   res.render(PATH_TO_EJS_FILE)
 })
 
-app.get('/shop/list-transaksi', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/list-transaksi' // refer to "views/shop/list-transaksi.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
 /* END OF - HTML EXPERIMENT ZONE */
 
 app.use((req, res, next) => {

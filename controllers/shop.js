@@ -37,6 +37,26 @@ exports.getPembayaran = asyncHandler(async (req, res, next) => {
   res.render('shop/pembayaran', { trasactions })
 })
 
+exports.getListTransaksi = asyncHandler(async (req, res, next) => {
+  const userId = req.session.user.id
+
+  const trasactions = await Transaction.findAll({
+    where: { userId: userId },
+    include: [{ model: Art }],
+    limit: 100
+  })
+
+  const paid = trasactions.filter((trasaction) => trasaction.status === 'paid')
+  const pending = trasactions.filter(
+    (trasaction) => trasaction.status === 'pending'
+  )
+  const failed = trasactions.filter(
+    (trasaction) => trasaction.status === 'failed'
+  )
+
+  res.render('shop/list-transaksi', { paid, pending, failed })
+})
+
 exports.postCheckout = asyncHandler(async (req, res, next) => {
   const { totalPrice, productId } = req.body
   const art = await Art.findByPk(productId)
