@@ -46,16 +46,6 @@ app.get('/admin/daftarproduct', (req, res) => {
   res.render(PATH_TO_EJS_FILE)
 })
 
-app.get('/admin/daftartransaksi', (req, res) => {
-  const PATH_TO_EJS_FILE = 'admin/daftartransaksi' // refer to "views/admin/daftartransaksi.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/admin/pesananmasuk', (req, res) => {
-  const PATH_TO_EJS_FILE = 'admin/pesananmasuk' // refer to "views/admin/pesananmasuk.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
 /* END OF - HTML EXPERIMENT ZONE */
 
 app.use((req, res, next) => {
@@ -88,11 +78,14 @@ app.use((req, res, _next) => {
 
 app.use(async (err, _req, res, _next) => {
   console.log('error middleware', err)
-  const filepath = path.join(__dirname, 'views', 'error', err.code + '.ejs')
+  const filepath = path.join(__dirname, 'views', 'error', err.status + '.ejs')
   const doesFileExists = await fileUtils.exists(filepath)
 
   if (err.code && doesFileExists) {
-    return res.render(`error/${err.code}`, err.payload)
+    return res.render(`error/${err.status}`, {
+      message: err.message,
+      payload: err.payload
+    })
   }
 
   return res.render('error/500')
