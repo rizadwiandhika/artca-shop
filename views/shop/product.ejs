@@ -52,33 +52,20 @@
 				<div class="navbar-nav">
 				  <a class="nav-link me-4" href="#"><img src="/img/Messages.svg" alt="Shopping Cart" height="25px"></a>
 				  <a class="nav-link me-4" href="#"><img src="/img/Bell.svg" alt="Shopping Cart" height="25px"></a>
-				  <a class="nav-link" href="/auth/login">Login</a>
-				  <a class="nav-link" href="/auth/register">Daftar</a>
+
+					<% if (isAuth) { %>
+						<div id="profil-body">
+							<a class="profil-body-budi" href="/shop/profile"><img src="/img/profil-budi.svg" alt="profil" height="50px"></a>
+						</div>
+					<% } else { %>
+						<a class="nav-link" href="/auth/login">Login</a>
+						<a class="nav-link" href="/auth/register">Daftar</a>
+					<% }  %>
 				</div>
 			  </div>
 			</div>
 		  </nav>
-		<!-- <nav class="navbar navbar-expand fixed-top navbar-light bg-light">
-			<div class="container-fluid mx-5">
-			  <a class="navbar-brand" href="#">
-				<img src="/img/Logo.svg" alt="Logo" height="50px" style="margin-top:-15px;">
-			  </a>
-	  
-			  <form class="input-group mx-5">
-				<input class="form-control" type="search" placeholder="Search" aria-label="Search" style="width:1200px">
-				<button class="btn btn-outline-success" type="submit" style="border: 1px solid gray;">Search</button>
-			  </form>
-	  
-			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<div class="navbar-nav">
-				  <a class="nav-link me-4" href="#"><img src="/img/Messages.svg" alt="Shopping Cart" height="25px"></a>
-				  <a class="nav-link me-4" href="#"><img src="/img/Bell.svg" alt="Shopping Cart" height="25px"></a>
-				  <a class="nav-link" href="#">Login</a>
-				  <a class="nav-link" href="#">Daftar</a>
-				</div>
-			  </div>
-			</div>
-		  </nav> -->
+			
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->
@@ -89,7 +76,7 @@
 					<div class="col-md-6 col-md-pull-1">
 						<div id="product-main-img">
 							<div class="product-preview">
-								<img src="/img/product01.png" alt="">
+								<img src="/<%= art.imageUrl %>" alt="art-img">
 							</div>
 						</div>
 					</div>
@@ -101,29 +88,33 @@
 							<h2 class="product-name">Lukisan Motif Bata</h2>
 							<div>
 								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
+									<% for (let i = 0; i < 5; i++) { %>
+										<% if (i < art.rating) { %>
+											<i class="fa fa-star"></i>
+										<% } else { %>
+											<i class="fa fa-star-o"></i>
+										<% } %>
+									<% } %>
 								</div>
 								<a class="review-link" href="#">129 Ulasan | Add your review</a>
 							</div>
 							<div>
-								<h3 class="product-price">Rp 600.000 <del class="product-old-price">Rp 1.000.000</del></h3>
-								<span class="product-available">READY</span>
+								<h3 class="product-price">Rp <%= art.price %> <del class="product-old-price">Rp 1.000.000</del></h3>
+								<span class="product-available"><%= art.status %></span>
 							</div>
 							<h4><br>Detail</h4>
 							
-							<p>Kondisi : Ready <br/>
-								Berat : 1.000 Gram <br/>
-								Teknik Lukisan : Plakat <br/>
-								Tema : Kesepian <br/><br/>
+							<p>Kondisi : <%= art.status %> <br/>
+								Berat : <%= art.weight %> Gram <br/>
+								Teknik Lukisan : <%= art.technique %> <br/>
+								Tema : <%= art.theme %> <br/><br/>
 								<h4>Deskripsi Produk : </h4>
 								</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p> <br/>
+							<p><%= art.description %></p> <br/>
 						</div>
 					</div>
+
+
 					<div class="col-md-10 col-md-">
 						<div class="keranjangs">
 							<div class="product-details">
@@ -138,12 +129,16 @@
 									<div class="qty-label">
 										Qty
 										<div class="input-number">
-											<input type="number">
+											<input type="number" name="qty" id="product-qty" value="1">
 											<span class="qty-up">+</span>
 											<span class="qty-down">-</span>
 										</div>
 									</div>
-									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/auth/login"><strong>Checkout</strong></a></button>
+									<% if (isAuth) { %>
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/shop/checkout/<%= art.id %>"><strong>Checkout</strong></a></button>
+									<% } else { %>
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/auth/login"><strong>Login to checkout</strong></a></button>
+									<% } %>
 								</div>
 
 								<ul class="product-btns">

@@ -108,106 +108,93 @@
 					<!-- Product details -->
 					<div class="col-md-9 ">
 						<div class="profil-main">
-							<h6 class="judul">Menunggu Pembayaran (2)</h6>
+							<h6 class="judul">Menunggu Pembayaran (<%= trasactions.length %>)</h6>
                             <hr class="mb-3" style="width:965px;margin-left: -20px;";/>
-							<div class="container-view-1">
-								<div class="row">
-									<div class="col-md-2 product-preview">
-										<img src="/img/product01.png" alt="" style="width:150px;padding-right: 20px;">
-									</div>
-									<div class="col-md-5 text">
-										<p><strong>Lukisan Motif Bata</strong> | <span style="color: #2CDA9D;font-weight: bold;font-size: 15px;">Invoice</span></p>
-										<p style="font-size: 13px;margin-top: -15px;">Total: <span style="color: #FA632A"> <strong> 630.000</strong></span> Tanggal Pembelian <strong>30 Februari 2021</strong></p>
-										<p class="bayar-alert" style="font-size: 13px;">Bayar sebelum 31 Februari 2021, 24:01 WIBU</p>
-										<p style="font-size: 13px;margin-top: -5px;">Metode Pembayaran &emsp;:&emsp; <strong>GOPAY</strong></p>
-									</div>
-									<div class="col-md-5 text">
-										<a class="batal-alert" href="#">
-											<p>Batalkan Transaksi</p>
-										</a><br>
-										<div class="gambargopay">
-											<img src = "/img/gopay.svg"/> 
+							<% for (let t of trasactions) { %>
+								<div class="container-view-1">
+									<div class="row">
+										<div class="col-md-2 product-preview">
+											<img src="/<%= t.art.imageUrl %>" alt="img-art" style="width:150px;padding-right: 20px;">
 										</div>
-										<a class="cara-bayar" href="#">
-											<button type="button" class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#myModal2">Cara Pembayaran</button>
-										</a>
-										<a class="unggah-bukti" href="#">
-											<button type="button" class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#myModal1">Unggah Bukti Pembayaran</button>
-										</a>
+
+										<div class="col-md-5 text">
+											<p><strong><%= t.art.name %></strong> | <span style="color: #2CDA9D;font-weight: bold;font-size: 15px;">Invoice</span></p>
+											<p style="font-size: 13px;margin-top: -15px;">Total: <span style="color: #FA632A"> <strong><%= t.totalPrice %></strong></span> Tanggal Pembelian <strong><%= t.createdAt %></strong></p>
+											<p class="bayar-alert" style="font-size: 13px;">Bayar sebelum 31 Februari 2021, 24:01 WIBU</p>
+											<p style="font-size: 13px;margin-top: -5px;">Metode Pembayaran &emsp;:&emsp; <strong>GOPAY</strong></p>
+										</div>
+
+										<div class="col-md-5 text">
+											<a class="batal-alert" href="#">
+												<p>Batalkan Transaksi</p>
+											</a>
+											
+											<br>
+
+											<div class="gambargopay">
+												<img src = "/img/gopay.svg"/> 
+											</div>
+
+											<a class="cara-bayar" href="#">
+												<button type="button" class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#myModal2">Cara Pembayaran</button>
+											</a>
+
+											<a class="unggah-bukti" href="#">
+												<button type="button" class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#myModal<%= t.id %>">Unggah Bukti Pembayaran</button>
+											</a>
+
+											<!-- The Modal -->
+											<div class="modal" id="myModal<%= t.id %>">
+												<div class="modal-dialog modal-xl">
+													<div class="modal-content">
+													<!-- Modal Header -->
+														<div class="modal-header">
+															<h4 class="modal-title">Upload Bukti Pembayaran</h4>
+															<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+														</div>
+														<!-- Modal body -->
+														<div class="modal-body">
+															<div class="row">
+																<p class="alert-konfirm"><i class="bi bi-cash-coin" style="color:#FFDF00 ;"></i> Unggah bukti pembayaran dapat mempercepat verifikasi pembayaran :)</p>
+																<p style="margin-left: 10px;">Pastikan bukti pembayaran menampilkan :</p>
+																<div class="info-bagian1">
+																	<p><i class="bi bi-dot" style="color: #2CDA9D;"></i><strong>Tanggal/Waktu Transfer</strong></p>
+																	<p class="contoh">contoh : tgl. 04/06/21 / jam 07.24:06</p>
+																	<p><i class="bi bi-dot" style="color: #2CDA9D;"></i><strong>Status Berhasil</strong></p>
+																	<p class="contoh">contoh : Transfer BERHASL, Transaksi Sukses</p>
+																</div>
+																<div class="info-bagian2">
+																	<p><i class="bi bi-dot" style="color: #2CDA9D;"></i><strong>Detail Penerima</strong></p>
+																	<p class="contoh">contoh : Transfer ke Rekening PT ARTCA</p>
+																	<p><i class="bi bi-dot" style="color: #2CDA9D;"></i><strong>Jumlah Transfer</strong></p>
+																	<p class="contoh">contoh : Rp 123.456,00</p>
+																</div>
+																<div class="insert-gambar">
+																	<i class="bi bi-card-image fa-3x" style="color: #c8c9cc;"></i>
+																	<p>Format gambar : .JPG .JPEG .PNG max 10 MB</p>
+																	<form action="/shop/pembayaran" method="post" enctype="multipart/form-data">
+																		<input type="hidden" name="transactionId" id="transactionId" value="<%= t.id %>">
+																		<div>
+																			<input style="margin: 1rem auto;" id="bukti-pembayaran" type="file" accept="image/png, image/jpg, image/jpeg"  name="bukti-pembayaran" />
+																		</div>
+																			<button style="cursor: not-allowed !important;" id="upload-btn" type="submit" class="btn btn-outline-1">Upload</button>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- The Modal -->
+											
+										</div>
 									</div>
 								</div>
-							</div>
-							
-							<div class="container-view-1">
-								<div class="row">
-									<div class="col-md-2 product-preview">
-										<img src="/img/product08.png" alt="" style="width:150px;padding-right: 20px;">
-									</div>
-									<div class="col-md-5 text">
-										<p><strong>Lukisan Gunung Merapi</strong> | <span style="color: #2CDA9D;font-weight: bold;font-size: 15px;">Invoice</span></p>
-										<p style="font-size: 13px;margin-top: -15px;">Total: <span style="color: #FA632A"> <strong> 607.000</strong></span> Tanggal Pembelian <strong>30 Februari 2021</strong></p>
-										<p class="bayar-alert" style="font-size: 13px;">Bayar sebelum 31 Februari 2021, 24:01 WIBU</p>
-										<p style="font-size: 13px;margin-top: -5px;">Metode Pembayaran &emsp;:&emsp; <strong>GOPAY</strong></p>
-									</div>
-									<div class="col-md-5 text">
-										<a class="batal-alert" href="#">
-											<p>Batalkan Transaksi</p>
-										</a><br>
-										<div class="gambargopay">
-											<img src = "/img/gopay.svg"/> 
-										</div>
-										<a class="cara-bayar" href="#">
-											<button type="button" class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#myModal2">Cara Pembayaran</button>
-										</a>
-										<a class="unggah-bukti" href="#">
-											<button type="button" class="btn btn-outline" data-bs-toggle="modal" data-bs-target="#myModal1">Unggah Bukti Pembayaran</button>
-										</a>
-									</div>
-								</div>
-							</div>
+							<% } %>
 						</div>
 						<!-- Button to Open the Modal -->
+
 						
-  
-						<!-- The Modal -->
-						<div class="modal" id="myModal1">
-							<div class="modal-dialog modal-xl">
-								<div class="modal-content">
-								<!-- Modal Header -->
-									<div class="modal-header">
-										<h4 class="modal-title">Upload Bukti Pembayaran</h4>
-										<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-									</div>
-									<!-- Modal body -->
-									<div class="modal-body">
-										<div class="row">
-											<p class="alert-konfirm"><i class="bi bi-cash-coin" style="color:#FFDF00 ;"></i> Unggah bukti pembayaran dapat mempercepat verifikasi pembayaran :)</p>
-											<p style="margin-left: 10px;">Pastikan bukti pembayaran menampilkan :</p>
-											<div class="info-bagian1">
-												<p><i class="bi bi-dot" style="color: #2CDA9D;"></i><strong>Tanggal/Waktu Transfer</strong></p>
-												<p class="contoh">contoh : tgl. 04/06/21 / jam 07.24:06</p>
-												<p><i class="bi bi-dot" style="color: #2CDA9D;"></i><strong>Status Berhasil</strong></p>
-												<p class="contoh">contoh : Transfer BERHASL, Transaksi Sukses</p>
-											</div>
-											<div class="info-bagian2">
-												<p><i class="bi bi-dot" style="color: #2CDA9D;"></i><strong>Detail Penerima</strong></p>
-												<p class="contoh">contoh : Transfer ke Rekening PT ARTCA</p>
-												<p><i class="bi bi-dot" style="color: #2CDA9D;"></i><strong>Jumlah Transfer</strong></p>
-												<p class="contoh">contoh : Rp 123.456,00</p>
-											</div>
-											<div class="insert-gambar">
-												<i class="bi bi-card-image fa-3x" style="color: #c8c9cc;"></i>
-												<p>Format gambar : .JPG .JPEG .PNG max 10 MB</p>
-												<a class="unggah-gambar-bayar" href="/shop/list-transaksi">
-													<button type="button" class="btn btn-outline-1">Pilih Gambar</button>
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- The Modal -->
 
 						<!-- The Modal -->
 						<div class="modal" id="myModal2">
@@ -228,6 +215,8 @@
 							</div>
 						</div>
 						<!-- The Modal -->
+
+
 
 					</div>
 					<!-- /Product details -->
@@ -315,6 +304,18 @@
 		<script src="/js/nouislider.min.js"></script>
 		<script src="/js/jquery.zoom.min.js"></script>
 		<script src="/js/main.js"></script>
+		<script>
+			const uploadBtn = document.getElementById("upload-btn")
+			const file = document.getElementById("bukti-pembayaran")
 
+			file.addEventListener("change", function(){
+				const photo = file.files[0]
+				if (photo) {
+					uploadBtn.style.cursor = "pointer"
+				} else {
+					uploadBtn.style.cursor = 'not-allowed'
+				}
+			})
+		</script>
 	</body>
 </html>

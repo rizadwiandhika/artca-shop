@@ -24,7 +24,7 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
   if (!user) {
     req.flash('loginError', 'wrong username or password')
     return req.session.save((err) => {
-      res.redirect('/login')
+      res.redirect('/auth/login')
     })
   }
 
@@ -44,17 +44,17 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
 
     req.flash('loginError', message)
     return req.session.save((err) => {
-      res.redirect('/login')
+      res.redirect('/auth/login')
     })
   }
 
   req.session.user = user.dataValues
   req.session.save((err) => {
-    res.redirect('/')
+    res.redirect('/shop/home')
   })
 })
 exports.postRegister = asyncHandler(async (req, res, next) => {
-  const { name, email, password } = req.body
+  const { name, email, password, address } = req.body
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
@@ -65,7 +65,7 @@ exports.postRegister = asyncHandler(async (req, res, next) => {
     req.flash('registerError', errorMessages)
 
     return req.session.save((err) => {
-      res.redirect('/register')
+      res.redirect('/auth/register')
     })
   }
 
@@ -75,14 +75,14 @@ exports.postRegister = asyncHandler(async (req, res, next) => {
   const newUser = {
     name,
     email,
-    password: hashedPassword,
-    role: 'user'
+    address,
+    password: hashedPassword
   }
 
   const result = await User.create(newUser)
   console.log('new user created', result.dataValues)
 
-  res.redirect('/login')
+  res.redirect('/auth/login')
 })
 exports.postLogout = asyncHandler(async (req, res, next) => {
   req.session.destroy((err) => {

@@ -52,8 +52,9 @@
 				<div class="navbar-nav">
 				  <a class="nav-link me-4" href="#"><img src="/img/Messages.svg" alt="Shopping Cart" height="25px"></a>
 				  <a class="nav-link me-4" href="#"><img src="/img/Bell.svg" alt="Shopping Cart" height="25px"></a>
-				  <a class="nav-link" href="Login-Register-Recovery/login.html">Login</a>
-				  <a class="nav-link" href="Login-Register-Recovery/register.html">Daftar</a>
+				  <div id="profil-body">
+						<a class="profil-body-budi" href="/shop/profile"><img src="/img/profil-budi.svg" alt="profil" height="50px"></a>
+					</div>
 				</div>
 			  </div>
 			</div>
@@ -68,7 +69,7 @@
 						<!-- Billing Details -->
 						<div class="billing-details">
 							<div class="section-title">
-								<h3 class="title">Barang yang dibeli	</h3>
+								<h3 class="title">Barang yang dibeli</h3>
 								<p class="alerttitle"><i class="fa fa-cart-arrow-down " aria-hidden="true"></i>   Ini halaman terakhir dari proses belanjamu. Pastikan semua sudah benar, ya. :)</p>
 							</div>
 
@@ -76,7 +77,7 @@
 								<div class="col-md-6">
 									<div id="product-main-img">
 										<div class="product-preview">
-											<img src="/img/product01.png" alt="">
+											<img src="/<%= art.imageUrl %>" alt="">
 										</div>
 									</div>
 								</div>
@@ -85,11 +86,10 @@
 								<!-- Product details -->
 								<div class="col-md-6">
 									<div class="product-details">
-										<h2 class="product-name">Lukisan Motif Bata</h2>
+										<h2 class="product-name"><%= art.name %></h2>
 										<div>
-											<p class="product-price">Rp 600.000</p>
+											<p class="product-price">Rp <%= art.price %></p>
 										</div>
-										<a href="#" class="product-catatan">Tulis cacatan untuk barang ini <i class="fa fa-arrow-circle-right"></i></a>
 									</div>
 
 								</div>
@@ -181,7 +181,7 @@
 								<div class="order-products">
 									<div class="order-col">
 										<div>Lukisan Motif Bata</div>
-										<div>Rp 600.000</div>
+										<div>Rp <%= art.price %></div>
 									</div>
 								</div>
 								<div class="order-col">
@@ -190,10 +190,14 @@
 								</div>
 								<div class="order-col">
 									<div><strong>TOTAL</strong></div>
-									<div><strong class="order-total">Rp 630.000</strong></div>
+									<div><strong class="order-total">Rp <%= art.price + 30000 %></strong></div>
 								</div>
 							</div>
-						<a href="#" class="primary-btn order-submit">Bayar</a>
+							<form action="/shop/checkout" method="post">
+								<input type="hidden" name="totalPrice" value="<%= art.price + 30000 %>">
+								<input type="hidden" name="productId" value="<%= art.id %>">
+								<button style="width: 100%" type="submit" class="primary-btn order-submit">Bayar</button>
+							</form>
 					</div>
 					</div>
 					<!-- /Order Details -->
@@ -280,5 +284,8 @@
 		<script src="/js/jquery.zoom.min.js"></script>
 		<script src="/js/main.js"></script>
 
+		<script>
+
+		</script>
 	</body>
 </html>

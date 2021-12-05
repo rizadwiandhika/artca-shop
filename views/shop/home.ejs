@@ -44,12 +44,20 @@
 				<div class="navbar-nav">
 				  <a class="nav-link me-4" href="#"><img src="/img/Messages.svg" alt="Shopping Cart" height="25px"></a>
 				  <a class="nav-link me-4" href="#"><img src="/img/Bell.svg" alt="Shopping Cart" height="25px"></a>
-				  <a class="nav-link" href="/auth/login">Login</a>
-				  <a class="nav-link" href="/auth/register">Daftar</a>
+
+					<% if (isAuth) { %>
+						<div id="profil-body">
+							<a class="profil-body-budi" href="/shop/profile"><img src="/img/profil-budi.svg" alt="profil" height="50px"></a>
+						</div>
+					<% } else { %>
+						<a class="nav-link" href="/auth/login">Login</a>
+						<a class="nav-link" href="/auth/register">Daftar</a>
+					<% } %>
 				</div>
 			  </div>
 			</div>
-		  </nav>
+		</nav>
+
 		<!-- SECTION -->
 		<div class="section">
 			<!-- container -->
@@ -134,140 +142,32 @@
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product01.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">READY</p>
-												<h3 class="product-name"><a href="#">Lukisan Motif Bata</a></h3>
-												<h4 class="product-price">Rp 600.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
+										
+										<% for (p of arts) { %>
+											<div class="product">
+												<div class="product-img">
+													<img src="/<%= p.imageUrl %>" alt="art-img">
 												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												<div class="product-body">
+													<p class="product-category"><%= p.status %></p>
+													<h3 class="product-name"><a href="#"><%= p.name %></a></h3>
+													<h4 class="product-price">Rp <%= p.price %> <del class="product-old-price">Rp 1.000.000</del></h4>
+													<div class="product-rating">
+														<% for (let i = 0; i < p.rating; i++ ) { %>
+															<i class="fa fa-star"></i>
+														<% } %>
+													</div>
+													<div class="product-btns">
+														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+													</div>
 												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/shop/product"> Kunjungi</a></button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product02.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">READY</p>
-												<h3 class="product-name"><a href="#">Lukisan Lampu Malam</a></h3>
-												<h4 class="product-price">Rp 537.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												<div class="add-to-cart">
+													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/shop/product/<%= p.id %>">Kunjungi</a></button>
 												</div>
 											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Kunjungi</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product03.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">READY</p>
-												<h3 class="product-name"><a href="#">Lukisan Kota Tua</a></h3>
-												<h4 class="product-price">Rp 821.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Kunjungi</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product04.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">PRE-ORDER</p>
-												<h3 class="product-name"><a href="#">Lukisan Rumah Nenek</a></h3>
-												<h4 class="product-price">Rp 857.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Kunjungi</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product05.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">PRE-ORDER</p>
-												<h3 class="product-name"><a href="#">Lukisan Ikan Cupang</a></h3>
-												<h4 class="product-price">Rp 1.537.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Kunjungi</button>
-											</div>
-										</div>
-										<!-- /product -->
+										<% } %>
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
@@ -276,6 +176,8 @@
 						</div>
 					</div>
 					<!-- Products tab & slick -->
+
+
 					<div class="col-md-12">
 						<div class="section-title">
 							<h3 class="title">Rekomendasi Untukmu</h3>
@@ -289,140 +191,31 @@
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-2">
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product01.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">PRE-ORDER</p>
-												<h3 class="product-name"><a href="#">Lukisan Motif Bata</a></h3>
-												<h4 class="product-price">Rp 327.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
+										<% for (p of arts) { %>
+											<div class="product">
+												<div class="product-img">
+													<img src="/<%= p.imageUrl %>" alt="art-img">
 												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												<div class="product-body">
+													<p class="product-category"><%= p.status %></p>
+													<h3 class="product-name"><a href="#"><%= p.name %></a></h3>
+													<h4 class="product-price">Rp <%= p.price %> <del class="product-old-price">Rp 1.000.000</del></h4>
+													<div class="product-rating">
+														<% for (let i = 0; i < p.rating; i++ ) { %>
+															<i class="fa fa-star"></i>
+														<% } %>
+													</div>
+													<div class="product-btns">
+														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+													</div>
 												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product02.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">PRE-ORDER</p>
-												<h3 class="product-name"><a href="#">Lukisan Malam Indah</a></h3>
-												<h4 class="product-price">Rp 327.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												<div class="add-to-cart">
+													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/shop/product/<%= p.id %>">Kunjungi</a></button>
 												</div>
 											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product03.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">READY</p>
-												<h3 class="product-name"><a href="#">Lukisan Kota Tua</a></h3>
-												<h4 class="product-price">Rp 537.000  <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product04.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">PRE-ORDER</p>
-												<h3 class="product-name"><a href="#">Lukisan Rumah Kenangan</a></h3>
-												<h4 class="product-price">Rp 537.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product05.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">READY</p>
-												<h3 class="product-name"><a href="#">Lukisan Ikan Cupang</a></h3>
-												<h4 class="product-price">Rp 537.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
+										<% } %>
 									</div>
 									<div id="slick-nav-2" class="products-slick-nav"></div>
 								</div>
@@ -431,6 +224,8 @@
 						</div>
 					</div>
 					<!-- Products tab & slick -->
+
+
 					<!-- Products tab & slick -->
 					<div class="col-md-12">
 						<div class="section-title-rekom">
@@ -445,140 +240,31 @@
 								<!-- tab -->
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-3">
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product01.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">Lukisan Motif Bata</a></h3>
-												<h4 class="product-price">Rp 430.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
+										<% for (p of arts) { %>
+											<div class="product">
+												<div class="product-img">
+													<img src="/<%= p.imageUrl %>" alt="art-img">
 												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												<div class="product-body">
+													<p class="product-category"><%= p.status %></p>
+													<h3 class="product-name"><a href="#"><%= p.name %></a></h3>
+													<h4 class="product-price">Rp <%= p.price %> <del class="product-old-price">Rp 1.000.000</del></h4>
+													<div class="product-rating">
+														<% for (let i = 0; i < p.rating; i++ ) { %>
+															<i class="fa fa-star"></i>
+														<% } %>
+													</div>
+													<div class="product-btns">
+														<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+														<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+														<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+													</div>
 												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product02.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">Lukisan Malam Petang</a></h3>
-												<h4 class="product-price">Rp 439.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star-o"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+												<div class="add-to-cart">
+													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a href="/shop/product/<%= p.id %>">Kunjungi</a></button>
 												</div>
 											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product03.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">Lukisan Kota Tua</a></h3>
-												<h4 class="product-price">Rp 321.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product04.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">Lukisan Rumah Nenek</a></h3>
-												<h4 class="product-price">Rp 530.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
-
-										<!-- product -->
-										<div class="product">
-											<div class="product-img">
-												<img src="/img/product05.png" alt="">
-											</div>
-											<div class="product-body">
-												<p class="product-category">Category</p>
-												<h3 class="product-name"><a href="#">Lukisan Cupang Indah</a></h3>
-												<h4 class="product-price">Rp 430.000 <del class="product-old-price">Rp 1.000.000</del></h4>
-												<div class="product-rating">
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
-											</div>
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-										</div>
-										<!-- /product -->
+										<% } %>
 									</div>
 									<div id="slick-nav-3" class="products-slick-nav"></div>
 								</div>

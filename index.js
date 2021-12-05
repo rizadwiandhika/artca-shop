@@ -1,3 +1,4 @@
+const fs = require('fs')
 const path = require('path')
 
 require('dotenv').config()
@@ -13,6 +14,7 @@ const authRouters = require('./routes/auth')
 const sequelize = require('./utils/database')
 const populateDB = require('./utils/populate-db')
 const fileUtils = require('./utils/file')
+const { WORKDIR } = require('./utils/path')
 
 const { initializeRelation } = require('./models')
 
@@ -39,61 +41,6 @@ if (SESSION_SECRET) {
 }
 
 /* START OF - HTML EXPERIMENT ZONE */
-app.get('/experiment', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/home' // refer to "views/shop/home.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/auth/login', (req, res) => {
-  const PATH_TO_EJS_FILE = 'auth/login' // refer to "views/auth/login.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/auth/pass-recovery', (req, res) => {
-  const PATH_TO_EJS_FILE = 'auth/pass-recovery' // refer to "views/auth/pass-recovery.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/auth/register', (req, res) => {
-  const PATH_TO_EJS_FILE = 'auth/register' // refer to "views/auth/pass-recovery.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/home', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/home' // refer to "views/shop/home.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/home-login', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/home-login' // refer to "views/shop/home-login.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/product', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/product' // refer to "views/shop/product.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/product-login', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/product-login' // refer to "views/shop/product-login.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/checkout', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/checkout' // refer to "views/shop/checkout.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/checkout-login', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/checkout-login' // refer to "views/shop/checkout-login.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/profile', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/profile' // refer to "views/shop/home.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
 app.get('/admin/daftarproduct', (req, res) => {
   const PATH_TO_EJS_FILE = 'admin/daftarproduct' // refer to "views/admin/daftarproduct.ejs" file
   res.render(PATH_TO_EJS_FILE)
@@ -109,15 +56,6 @@ app.get('/admin/pesananmasuk', (req, res) => {
   res.render(PATH_TO_EJS_FILE)
 })
 
-app.get('/shop/list-transaksi', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/list-transaksi' // refer to "views/shop/list-transaksi.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
-app.get('/shop/pembayaran', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/pembayaran' // refer to "views/shop/pembayaran.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
 /* END OF - HTML EXPERIMENT ZONE */
 
 app.use((req, res, next) => {
@@ -133,8 +71,15 @@ app.use((req, res, next) => {
 })
 
 app.use('/admin', adminRouters)
-app.use(shopRouters)
-app.use(authRouters)
+app.use('/auth', authRouters)
+app.use('/shop', shopRouters)
+
+app.get('/', (_, res) => {
+  res.redirect('/shop/home')
+})
+app.get('/shop/home-login', (_, res) => {
+  res.redirect('/shop/home')
+})
 
 app.use((req, res, _next) => {
   console.log('unknown path', req.method, req.url)
@@ -154,6 +99,11 @@ app.use(async (err, _req, res, _next) => {
 })
 
 initializeRelation()
+
+const buktiDirectory = path.join(WORKDIR, 'bukti')
+if (!fs.existsSync(buktiDirectory)) {
+  fs.mkdirSync(buktiDirectory)
+}
 
 async function startServer() {
   try {
