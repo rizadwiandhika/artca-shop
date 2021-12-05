@@ -106,6 +106,11 @@
               <a class="profil-body-budi" href="#">
                 <img src="/img/profil-budi.svg" alt="profil" height="50px" />
                 <h6><%= user.name %></h6>
+                <form action="/auth/logout" method="post">
+                  <button class="btn btn-outline-danger" type="submit">
+                    Logout
+                  </button>
+                </form>
               </a>
             </div>
             <hr
