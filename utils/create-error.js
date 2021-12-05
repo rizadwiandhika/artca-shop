@@ -1,6 +1,6 @@
 function createError(code = 500, message = 'something went wrong') {
   const error = Error(message)
-  error.code = code
+  error.status = code
   return error
 }
 
