@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 
 const User = require('../models/user')
 const Art = require('../models/art')
+const Transaction = require('../models/transaction')
 
 // const { WORKDIR } = require('../utils/path')
 
@@ -181,6 +182,33 @@ async function populateUsers() {
   if (!(await Art.findOne({ where: { id: 9 } }))) {
     await riza.createArt(p9)
   }
+
+  const t1 = new Transaction({
+    userId: 1,
+    artId: 1,
+    type: 'normal',
+    totalPrice: 628000,
+    address: 'Jalan Ahmad Dahlan'
+  })
+  const t2 = new Transaction({
+    userId: 2,
+    artId: 4,
+    type: 'normal',
+    totalPrice: 999000,
+    address: 'Jalan Kebayoran'
+  })
+  const t3 = new Transaction({
+    userId: 2,
+    artId: 9,
+    type: 'normal',
+    totalPrice: 723999,
+    address: 'Jalan Adi Sucipto',
+    status: 'pending',
+    paymentProof:
+      '/Users/riza/Documents/A-Kuliah/4-MPPL/artca-shop/bukti/1638670009861-595520825-Naruto.jpg'
+  })
+
+  await Promise.all([t1.save(), t2.save(), t3.save()])
 }
 
 module.exports = populateDB
