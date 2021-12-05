@@ -1,3 +1,4 @@
+const fs = require('fs')
 const path = require('path')
 
 require('dotenv').config()
@@ -13,6 +14,7 @@ const authRouters = require('./routes/auth')
 const sequelize = require('./utils/database')
 const populateDB = require('./utils/populate-db')
 const fileUtils = require('./utils/file')
+const { WORKDIR } = require('./utils/path')
 
 const { initializeRelation } = require('./models')
 
@@ -112,6 +114,11 @@ app.use(async (err, _req, res, _next) => {
 })
 
 initializeRelation()
+
+const buktiDirectory = path.join(WORKDIR, 'bukti')
+if (!fs.existsSync(buktiDirectory)) {
+  fs.mkdirSync(buktiDirectory)
+}
 
 async function startServer() {
   try {

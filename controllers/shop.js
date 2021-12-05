@@ -54,3 +54,20 @@ exports.postCheckout = asyncHandler(async (req, res, next) => {
   await Promise.all([newTransaction.save(), art.save()])
   res.redirect('/shop/pembayaran')
 })
+
+exports.postPembayaran = asyncHandler(async (req, res, next) => {
+  // uploaded file was rejected
+  if (!req.file) {
+    return next(createError(400, 'Please a valid file type'))
+  }
+
+  const { transactionId } = req.body
+  const transaction = await Transaction.findByPk(transactionId)
+
+  transaction.status = 'pending'
+  transaction.paymentProof = req.file.path
+
+  await transaction.save()
+
+  res.redirect('/shop/list-transaksi')
+})
