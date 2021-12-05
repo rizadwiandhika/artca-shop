@@ -101,14 +101,13 @@ if (!fs.existsSync(buktiDirectory)) {
 async function startServer() {
   try {
     // Connect to database if username and password are set
-    if (process.env.USERNAME && process.env.PASSWORD) {
-      console.log('Conntecting to database...')
-      await sequelize.authenticate()
-      console.log('Connected to database! Waiting port setup...')
-      await sequelize.sync({ force: true })
-      // await sequelize.sync()
-      await populateDB()
-    }
+
+    console.log('Conntecting to database...')
+    await sequelize.authenticate()
+    console.log('Connected to database! Waiting port setup...')
+    // await sequelize.sync({ force: true })
+    await sequelize.sync()
+    await populateDB()
 
     app.listen(PORT, () => console.log('listening on port', PORT))
   } catch (error) {
