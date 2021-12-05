@@ -54,7 +54,7 @@ exports.postLogin = asyncHandler(async (req, res, next) => {
   })
 })
 exports.postRegister = asyncHandler(async (req, res, next) => {
-  const { name, email, password } = req.body
+  const { name, email, password, address } = req.body
   const errors = validationResult(req)
 
   if (!errors.isEmpty()) {
@@ -75,8 +75,8 @@ exports.postRegister = asyncHandler(async (req, res, next) => {
   const newUser = {
     name,
     email,
-    password: hashedPassword,
-    role: 'user'
+    address,
+    password: hashedPassword
   }
 
   const result = await User.create(newUser)
