@@ -1,13 +1,15 @@
 const { Sequelize } = require('sequelize')
 
-const DATABASE = 'artca'
-const USERNAME = process.env.USERNAME
-const PASSWORD = process.env.PASSWORD
+const DB_HOST = process.env.DB_HOST
+const DB_PORT = process.env.DB_PORT
+const DB_NAME = process.env.DB_NAME
+const DB_USERNAME = process.env.DB_USERNAME
+const DB_PASSWORD = process.env.DB_PASSWORD
 
 const sequelize = new Sequelize(DATABASE, USERNAME, PASSWORD, {
-  host: 'localhost',
+  host: HOST,
   dialect: 'mysql',
-  port: '3306',
+  port: PORT,
   logging: false
 })
 
