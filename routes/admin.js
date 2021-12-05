@@ -4,7 +4,7 @@ const { shouldLogin, allowedRole } = require('../middleware/auth')
 
 const router = express.Router()
 
-// router.use(shouldLogin(true), allowedRole('admin'))
+router.use(shouldLogin(true), allowedRole('admin'))
 
 router.get('/bukti/transaksi/:id', adminControllers.getBuktiTransaksi)
 router.get('/pesananmasuk', adminControllers.getPesananMasuk)
