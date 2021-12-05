@@ -57,6 +57,12 @@ exports.getListTransaksi = asyncHandler(async (req, res, next) => {
   res.render('shop/list-transaksi', { paid, pending, failed })
 })
 
+exports.getProfile = asyncHandler(async (req, res, next) => {
+  const user = req.session.user
+
+  res.render('shop/profile', { user })
+})
+
 exports.postCheckout = asyncHandler(async (req, res, next) => {
   const { totalPrice, productId } = req.body
   const art = await Art.findByPk(productId)

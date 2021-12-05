@@ -37,6 +37,7 @@ router.get(
   shopControllers.getListTransaksi
 )
 router.get('/pembayaran', shouldLogin(true), shopControllers.getPembayaran)
+router.get('/profile', shouldLogin(true), shopControllers.getProfile)
 router.get('/home', shopControllers.getIndex)
 
 router.post('/checkout', shouldLogin(true), shopControllers.postCheckout)

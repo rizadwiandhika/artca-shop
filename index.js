@@ -41,11 +41,6 @@ if (SESSION_SECRET) {
 }
 
 /* START OF - HTML EXPERIMENT ZONE */
-app.get('/shop/profile', (req, res) => {
-  const PATH_TO_EJS_FILE = 'shop/profile' // refer to "views/shop/home.ejs" file
-  res.render(PATH_TO_EJS_FILE)
-})
-
 app.get('/admin/daftarproduct', (req, res) => {
   const PATH_TO_EJS_FILE = 'admin/daftarproduct' // refer to "views/admin/daftarproduct.ejs" file
   res.render(PATH_TO_EJS_FILE)
