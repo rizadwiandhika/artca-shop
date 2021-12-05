@@ -1,3 +1,4 @@
+const { Op } = require('sequelize')
 const fileUtils = require('../utils/file')
 
 const Art = require('../models/art')
@@ -30,6 +31,17 @@ exports.getBuktiTransaksi = asyncHandler(async (req, res, next) => {
   }
 
   res.sendFile(transaction.paymentProof)
+})
+
+exports.getDaftarTransaksi = asyncHandler(async (req, res, next) => {
+  const transactions = await Transaction.findAll({
+    where: { status: { [Op.notIn]: ['unpaid', 'pending'] } },
+    limit: 100
+  })
+
+  res.render('admin/daftartransaksi', {
+    transactions
+  })
 })
 
 exports.postSetujuTransaksi = asyncHandler(async (req, res, next) => {
